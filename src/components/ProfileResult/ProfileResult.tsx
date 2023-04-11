@@ -37,16 +37,20 @@ const ProfileResult: FC<GitHubProfile> = ({
       <div className="profile-search-result__repositories">
         <h3>Latest Repositories</h3>
         {!repositories?.length && <p>{name} has no repositories</p>}
-        {repositories?.map(({ id, html_url, name, description }) => (
-          <div className="profile-search-result__repo" key={id}>
-            <h2>
-              <a href={html_url} target="_blank">
-                {name}
-              </a>
-            </h2>
-            <p>{description}</p>
-          </div>
-        ))}
+        {repositories && (
+          <ul>
+            {repositories.map(({ id, html_url, name, description }) => (
+              <li className="profile-search-result__repo" key={id}>
+                <h2>
+                  <a href={html_url} target="_blank">
+                    {name}
+                  </a>
+                </h2>
+                <p>{description}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
