@@ -36,7 +36,10 @@ export class GitHubProfileSearchApi {
         try {
             const user = await api.get<User>(`${this.baseUsersEndpoint()}${username}`);
 
-            if (!user?.login ) return;
+            if (!user?.login ) {
+                alert(`A GitHub profile for ${username} was not found.`);
+                return;
+            }
 
             const repos = await api.get<Repository[]>(`${this.baseUsersEndpoint()}${username}/repos?sort=created`);
 
